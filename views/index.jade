@@ -1,0 +1,64 @@
+extends layout
+
+block content
+  body.console
+    br
+    br
+    #startBox.centered
+      input#sumBox.form-control.input-hg(type="text", name="sumBox", placeholder="Summoner Name")
+      form#regionForm
+        input#NA(type="radio", name="region", value="na", checked="")
+        | NA
+        label
+          input#EUW(type="radio", name="region", value="euw")
+          | EUW
+        label
+          input#EUNE(type="radio", name="region", value="eune")
+          | EUNE
+        label
+          input#BR(type="radio", name="region", value="BR")
+          | BR
+        label
+          input#KR(type="radio", name="region", value="KR")
+          | KR
+        label
+          input#LAN(type="radio", name="region", value="LAN")
+          | LAN
+        label
+          input#LAS(type="radio", name="region", value="LAS")
+          | LAS
+        label
+          input#OCE(type="radio", name="region", value="OCE")
+          | OCE
+        label
+          input#RU(type="radio", name="region", value="RU")
+          | RU
+        label
+          input#TR(type="radio", name="region", value="TR")
+          | TR
+      button#generateButton.btn.btn-inverse(type="button") Commence The Hatin"
+    span#loading.hidden
+      .ball
+      .ball1
+      .centered Hatin...
+    #insultBox.hidden.centered
+      a#insult
+      br
+      br
+      button#againButton.btn.btn-inverse(type="button") More Hatin"
+      span      
+      button#resetButton.btn.btn-inverse(type="button") New Summoner
+    br
+    br
+    br
+    br
+    br
+  footer.footer
+    a(href="http://mrlovoy.com", target="_blank") By Zac Lovoy
+    a |
+    a(href="http://twitter.com/zwlovoy", target="_blank") @zwlovoy
+    a |
+    a(href="https://developer.riotgames.com/", target="_blank") Uses the Riot Games Developer API
+    br
+    a(align="center")
+      | This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
