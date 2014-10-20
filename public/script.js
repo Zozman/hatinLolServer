@@ -18,8 +18,9 @@
     				type: 'GET',
     				url: url,
     				dataType: 'json',
-    				success: function(result) {
-      					displayInsult(result.result);
+    				success: function(output) {
+                alert(output.result);
+      					displayInsult(output.result);
     				},
     				async: true,
     				error: function() {
