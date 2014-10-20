@@ -17,9 +17,9 @@
 				$.ajax({
     				type: 'GET',
     				url: url,
-    				dataType: 'text',
+    				dataType: 'json',
     				success: function(result) {
-      					displayInsult(result);
+      					displayInsult(result.result);
     				},
     				async: true,
     				error: function() {
