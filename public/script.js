@@ -19,7 +19,6 @@
     				url: url,
     				dataType: 'json',
     				success: function(output) {
-                alert(output.result);
       					displayInsult(output.result);
     				},
     				async: true,
