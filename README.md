@@ -14,7 +14,7 @@ Each insult is kept in the `insults.json` file as string in an array of insults.
 Accessable Variables:
 ---------------------
 
-The followind are usable by the server to generate insults:
+The followind are usable by the server to generate insults (averages are not used because of the inability to mathematically combine averages from different game modes):
 - _name
 - _botGamesPlayed
 - _killingSpree
