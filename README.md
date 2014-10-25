@@ -5,7 +5,7 @@ Accessable Variables:
 ---------------------
 
 The followind are usable by the server to generate insults:
-- _charName
+- _name
 - _botGamesPlayed
 - _killingSpree
 - _maxAssists
