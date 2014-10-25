@@ -1,10 +1,10 @@
 Hatin' LoL Server
 =================
-The Hatin' LoL Server is a web application designed to take a player's stats in League of Legends over the current season, compile them, and then insult the user about them.  Build using Node.js and Express, and retrieves data from the Riot API.
+The Hatin' LoL Server is a web application designed to take a player's stats in League of Legends over the current season, compile them, and then insult the user about them.  Build using Node.js and Express, and retrieves data from the [Riot Games API](https://developer.riotgames.com/ "Riot Games API").
 
 Data
 ----
-The application uses data from the Riot Games API.  This application takes the current stats of a Summoner for the current season, both Ranked and Player matches and combines them.
+The application uses data from the [Riot Games API](https://developer.riotgames.com/ "Riot Games API").  This application takes the current stats of a Summoner for the current season, both Ranked and Player matches and combines them.
 
 Insults
 -------
