@@ -71,6 +71,7 @@
 				$("#startBox").addClass("hidden");
 				$("#insultBox").removeClass("hidden");
 				$("#againButton").addClass("hidden");
+        play("http://tts-api.com/tts.mp3?q=ERROR!%20%20Something%20went%20wrong.%20%20Either%20I%20hit%20my%20API%20limit%2C%20or%20you%20can't%20spell.");
 				$("#insult").typed({
         			strings: [insult],
         			typeSpeed: 0,
