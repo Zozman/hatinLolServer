@@ -9,7 +9,7 @@ The application uses data from the Riot Games API.  This application takes the c
 Insults
 -------
 
-Each insult is kept in the 'insults.json' file as string in an array of insults.  Values that are variables are represented by a _ followed by the variable's name in order to allow the easy addition of new insults.  The application then picks one at random and used the user's stats to generate the final insult.
+Each insult is kept in the `insults.json` file as string in an array of insults.  Values that are variables are represented by a _ followed by the variable's name in order to allow the easy addition of new insults.  The application then picks one at random and used the user's stats to generate the final insult.
 
 Accessable Variables:
 ---------------------
