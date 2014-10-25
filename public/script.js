@@ -14,8 +14,12 @@
         if (window.HTMLAudioElement) {
             var snd = new Audio('');
             if(snd.canPlayType('audio/mp3')) {
-              snd = new Audio(sound.replaceAll(" ", "%20"));
-              snd.play();
+              try {
+                snd = new Audio(sound.replaceAll(" ", "%20"));
+                snd.play();
+              } catch(Exception) {
+                
+              }
             }
         }
       }
@@ -37,8 +41,8 @@
     				url: url,
     				dataType: 'json',
     				success: function(output) {
-      					displayInsult(output.result);
                 play("http://tts-api.com/tts.mp3?q=" + output.result);
+      					displayInsult(output.result);
     				},
     				async: true,
     				error: function() {
