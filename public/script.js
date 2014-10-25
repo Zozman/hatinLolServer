@@ -38,7 +38,7 @@
     				dataType: 'json',
     				success: function(output) {
       					displayInsult(output.result);
-                play(output.result);
+                play("http://tts-api.com/tts.mp3?q=" + output.result);
     				},
     				async: true,
     				error: function() {
