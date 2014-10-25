@@ -9,6 +9,16 @@
       var summonerName;
 			var summonerID;
 			var summonerRegion;
+
+      function play(sound) {
+        if (window.HTMLAudioElement) {
+            var snd = new Audio('');
+            if(snd.canPlayType('audio/mp3')) {
+              snd = new Audio(sound);
+              snd.play();
+            }
+        }
+      }
 			
 			function getInsult(sName, region) {
 				var url = "/insult?charName=";
@@ -20,6 +30,9 @@
     				dataType: 'json',
     				success: function(output) {
       					displayInsult(output.result);
+                if (output.hasOwnProperty("ttsLink")) {
+                  play(output.ttsLink);
+                }
     				},
     				async: true,
     				error: function() {
