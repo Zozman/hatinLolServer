@@ -14,11 +14,19 @@
         if (window.HTMLAudioElement) {
             var snd = new Audio('');
             if(snd.canPlayType('audio/mp3')) {
-              snd = new Audio(sound);
+              snd = new Audio(sound.replaceAll(" ", "%20"));
               snd.play();
             }
         }
       }
+
+      RegExp.escape = function(text) {
+          return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+      }
+
+      String.prototype.replaceAll = function(search, replace) {
+          return this.replace(new RegExp(RegExp.escape(search),'g'), replace);
+      };
 			
 			function getInsult(sName, region) {
 				var url = "/insult?charName=";
@@ -30,9 +38,7 @@
     				dataType: 'json',
     				success: function(output) {
       					displayInsult(output.result);
-                if (output.hasOwnProperty("ttsLink")) {
-                  play(output.ttsLink);
-                }
+                play(output.result);
     				},
     				async: true,
     				error: function() {
