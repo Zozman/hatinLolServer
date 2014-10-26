@@ -38,7 +38,7 @@
     "Does _name just get reported for feeding every game with the _totalDamageTaken points of damage they have racked up this season?",
     "The longest that _name has ever played is _maxTimePlayed seconds, and I can say without any doubt there was no better way those _maxTimePlayed secounds could have been spent.",
     "_name has dealt a total of _totalDamageDealt damage in what I am assuming were tutorial games because to do that in real games would require _name to be good.",
-    "_name might vae played _totalSessionsPlayed sessions this season, but you're no closer to going pro.  I'd just give up.",
+    "_name might have played _totalSessionsPlayed sessions this season, but you're no closer to going pro.  I'd just give up.",
     "All _mostSpellsCast of the spells you have cast this season _name were at the wrong time and wrong situation.  I'm a computer, so just trust me on this.",
     "Having _totalGoldEarned gold earned over the season doesn't mean jack if you have the build intelligence of a Speak and Spell."
   ]
