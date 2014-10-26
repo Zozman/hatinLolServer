@@ -137,8 +137,8 @@
 				});
         $("#sumBox").keyup(function (e) {
             if (e.keyCode == 13) {
-                evt.stopPropagation();
-                evt.preventDefault();
+                e.stopPropagation();
+                e.preventDefault();
                 $("#startBox").addClass("hidden");
                 $("#loading").removeClass("hidden");
                 summonerName = $("#sumBox").val();
