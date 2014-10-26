@@ -54,14 +54,6 @@
     -webkit-animation: spinoff .5s infinite linear;
 }
 
-#regionForm {
-  word-wrap: break-word;
-}
-
-#regionForm span {
-  white-space: nowrap;
-}
-
 @-moz-keyframes spin {
     0% {
         -moz-transform: rotate(0deg);
