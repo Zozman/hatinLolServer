@@ -10,7 +10,7 @@ var insult = require('./routes/insult');
 
 var app = express();
 
-// Attem
+// Pull Riot API key from enviromental variables.
 apiKey = process.env.RIOTKEY;
 
 // view engine setup
