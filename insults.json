@@ -34,6 +34,9 @@
     "Was it worth it for _name to play _rankedSoloGamesPlayed Ranked Solo games by yourself.  Or was it just a reminder that your forever alone?",
     "If I lost _totalSessionsLost sessions like _name did, I would be salty too.",
     "_name only has a best player score of _maxTotalPlayerScore.  I'm not sure _name can support a pet dog or something, much less a team.",
-    "The only way I can see _name getting a max time spent living of _maxTimeSpentLiving is cowardice.  And I guess what works works."
+    "The only way I can see _name getting a max time spent living of _maxTimeSpentLiving is cowardice.  And I guess what works works.",
+    "Does _name just get reported for feeding every game with the _totalDamageTaken points of damage they have racked up this season?",
+    "The longest that _name has ever played is _maxTimePlayed seconds, and I can say without any doubt there was no better way those _maxTimePlayed secounds could have been spent.",
+    "_name has dealt a total of _totalDamageDealt damage in what I am assuming were tutorial games because to do that in real games would require _name to be good."
   ]
 }
