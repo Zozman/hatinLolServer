@@ -94,7 +94,7 @@
 			}
 			
 			function resetScreen() {
-        snd.stop();
+        snd.pause();
 				var old = $('#insult');
 				var parent = old.parent();
 				parent.prepend($('<a>').attr('id', 'insult'));
@@ -121,7 +121,7 @@
 					getInsult(summonerName, summonerRegion);
 				});
 				$('#againButton').unbind("click").click( function(evt) {
-          snd.stop();
+          snd.pause();
 					var old = $('#insult');
 					var parent = old.parent();
 					parent.prepend($('<a>').attr('id', 'insult'));
