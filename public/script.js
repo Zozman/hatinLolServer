@@ -139,6 +139,8 @@
             if (e.keyCode == 13) {
                 e.stopPropagation();
                 e.preventDefault();
+                document.activeElement.blur();
+                $("#sumBox").blur();
                 $("#startBox").addClass("hidden");
                 $("#loading").removeClass("hidden");
                 summonerName = $("#sumBox").val();
