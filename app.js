@@ -11,7 +11,7 @@ var insult = require('./routes/insult');
 var app = express();
 
 // uncomment after placing your favicon in /public
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // Pull Riot API key from enviromental variables.
 apiKey = process.env.RIOTKEY;
