@@ -95,11 +95,12 @@
         			}
       	});
         //play("http://tts-api.com/tts.mp3?q=ERROR!%20%20Something%20went%20wrong.%20%20Either%20I%20hit%20my%20API%20limit%2C%20or%20you%20can't%20spell.")
-        snd = mespeak.play('ERROR: Something went wrong.  Either I hit my API limit, or you cannot spell');
+        snd = mespeak.play(insult);
 			}
 			
 			function resetScreen() {
         //snd.pause();
+        meSpeak.stop(snd);
 				var old = $('#insult');
 				var parent = old.parent();
 				parent.prepend($('<a>').attr('id', 'insult'));
@@ -127,6 +128,7 @@
 				});
 				$('#againButton').unbind("click").click( function(evt) {
           //snd.pause();
+          meSpeak.stop(snd);
 					var old = $('#insult');
 					var parent = old.parent();
 					parent.prepend($('<a>').attr('id', 'insult'));
