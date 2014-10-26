@@ -16,6 +16,12 @@ This application uses the following CSS and JavaScript plugins and packages:
 - [cssConsole](https://github.com/michalkow/cssConsole "cssConsole")
 - [Typed.js](http://www.mattboldt.com/demos/typed-js/ "Typed.js")
 
+Installation
+------------
+1. Insert your Riot API Key into `key.json.sample`
+2. Rename `key.json.sample` to `key.json`
+3. Install as normal
+
 Data
 ----
 The application uses data from the [Riot Games API](https://developer.riotgames.com/ "Riot Games API").  This application takes the current stats of a Summoner for the current season, both Ranked and Player matches and combines them.
