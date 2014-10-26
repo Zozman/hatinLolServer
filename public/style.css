@@ -54,6 +54,10 @@
     -webkit-animation: spinoff .5s infinite linear;
 }
 
+#regionForm {
+  word-wrap: break-word;
+}
+
 #regionForm span {
   white-space: nowrap;
 }
