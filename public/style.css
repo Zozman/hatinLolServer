@@ -133,4 +133,9 @@
   .centered {
     width: 95%;
   }
+  
+  form {
+    display: inline-block;
+    text-align: center;
+  }
 }
