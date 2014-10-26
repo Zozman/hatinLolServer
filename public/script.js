@@ -9,10 +9,10 @@
       var summonerName;
 			var summonerID;
 			var summonerRegion;
+      var snd = new Audio('');
 
       function play(sound) {
         if (window.HTMLAudioElement) {
-            var snd = new Audio('');
             if(snd.canPlayType('audio/mp3')) {
               try {
                 snd = new Audio(sound.replaceAll(" ", "%20"));
@@ -94,6 +94,7 @@
 			}
 			
 			function resetScreen() {
+        snd.stop();
 				var old = $('#insult');
 				var parent = old.parent();
 				parent.prepend($('<a>').attr('id', 'insult'));
@@ -120,6 +121,7 @@
 					getInsult(summonerName, summonerRegion);
 				});
 				$('#againButton').unbind("click").click( function(evt) {
+          snd.stop();
 					var old = $('#insult');
 					var parent = old.parent();
 					parent.prepend($('<a>').attr('id', 'insult'));
