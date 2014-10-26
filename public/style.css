@@ -54,12 +54,8 @@
     -webkit-animation: spinoff .5s infinite linear;
 }
 
-#regionForm input.radio{
-  width:auto;
-}
-
-#regionForm input label{
-  float:left;
+#regionForm span {
+  white-space: nowrap;
 }
 
 @-moz-keyframes spin {

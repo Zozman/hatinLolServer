@@ -7,26 +7,36 @@ block content
     #startBox.centered
       input#sumBox.form-control.input-hg(type="text", name="sumBox", placeholder="Summoner Name")
       form#regionForm
-        input#NA(type="radio", name="region", value="na", checked="")
-        label(for='na') NA
-        input#EUW(type="radio", name="region", value="euw")
-        label(for='euw') EUW
-        input#EUNE(type="radio", name="region", value="eune")
-        label(for='eune') EUNE
-        input#BR(type="radio", name="region", value="br")
-        label(for='br') BR
-        input#KR(type="radio", name="region", value="kr")
-        label(for='kr') KR
-        input#LAN(type="radio", name="region", value="lan")
-        label(for='lan') LAN
-        input#LAS(type="radio", name="region", value="las")
-        label(for='las') LAS
-        input#OCE(type="radio", name="region", value="oce")
-        label(for='oce') OCE
-        input#RU(type="radio", name="region", value="ru")
-        label(for='ru') RU
-        input#TR(type="radio", name="region", value="tr")
-        label(for='tr') TR
+        span
+          input#NA(type="radio", name="region", value="na", checked="")
+          label(for='na') NA
+        span
+          input#EUW(type="radio", name="region", value="euw")
+          label(for='euw') EUW
+        span
+          input#EUNE(type="radio", name="region", value="eune")
+          label(for='eune') EUNE
+        span
+          input#BR(type="radio", name="region", value="br")
+          label(for='br') BR
+        span
+          input#KR(type="radio", name="region", value="kr")
+          label(for='kr') KR
+        span
+          input#LAN(type="radio", name="region", value="lan")
+          label(for='lan') LAN
+        span
+          input#LAS(type="radio", name="region", value="las")
+          label(for='las') LAS
+        span
+          input#OCE(type="radio", name="region", value="oce")
+          label(for='oce') OCE
+        span
+          input#RU(type="radio", name="region", value="ru")
+          label(for='ru') RU
+        span
+          input#TR(type="radio", name="region", value="tr")
+          label(for='tr') TR
       div(style='text-align:center;')
         button#generateButton.btn.btn-inverse(type="button") Commence The Hatin'
     span#loading.hidden
