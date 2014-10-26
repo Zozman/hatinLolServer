@@ -18,9 +18,8 @@ This application uses the following CSS and JavaScript plugins and packages:
 
 Installation
 ------------
-1. Insert your Riot API Key into `key.json.sample`
-2. Rename `key.json.sample` to `key.json`
-3. Install as normal
+1. Set your Riot API Key as an enviromental variable named `RIOTAPI` or change it in `app.js`
+2. Deploy as normal
 
 Data
 ----
