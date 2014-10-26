@@ -135,6 +135,17 @@
 					$("#loading").removeClass("hidden");
 					getInsult(summonerName, summonerRegion);
 				});
+        $("#sumBox").keyup(function (e) {
+            if (e.keyCode == 13) {
+                evt.stopPropagation();
+                evt.preventDefault();
+                $("#startBox").addClass("hidden");
+                $("#loading").removeClass("hidden");
+                summonerName = $("#sumBox").val();
+                summonerRegion = $("#regionForm input:checked").val();
+                getInsult(summonerName, summonerRegion);
+            }
+        });
 				$('#resetButton').unbind("click").click( function(evt) {
 					resetScreen();
 				});
