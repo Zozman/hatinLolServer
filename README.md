@@ -18,7 +18,7 @@ This application uses the following CSS and JavaScript plugins and packages:
 
 Installation
 ------------
-1. Set your Riot API Key as an enviromental variable named `RIOTAPI` or change it in `app.js`
+1. Set your Riot API Key as an enviromental variable named `RIOTAPI` OR change it in `app.js`
 2. Deploy as normal
 
 Data
