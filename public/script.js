@@ -9,10 +9,7 @@
       var summonerName;
 			var summonerID;
 			var summonerRegion;
-      meSpeak.loadConfig("/thirdparty/mespeak/mespeak_config.json");
-      meSpeak.loadVoice('/thirdparty/mespeak/en.json');
-      var snd;
-      /*var snd = new Audio('');
+      var snd = new Audio('');
 
       function play(sound) {
         if (window.HTMLAudioElement) {
@@ -25,7 +22,7 @@
               }
             }
         }
-      }*/
+      }
 
       RegExp.escape = function(text) {
           return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
@@ -44,8 +41,7 @@
     				url: url,
     				dataType: 'json',
     				success: function(output) {
-                //play("http://tts-api.com/tts.mp3?q=" + output.result);
-                snd = meSpeak.speak(output.result);
+                play("http://tts-api.com/tts.mp3?q=" + output.result);
       					displayInsult(output.result);
     				},
     				async: true,
@@ -77,7 +73,7 @@
 			
 			function displayError() {
 				$("#againButton").addClass("hidden");
-        $("#resetButton").addClass("hidden");
+        		$("#resetButton").addClass("hidden");
 				$('#sumBox').stop();
 				var insult = "ERROR!  Something went wrong.  Either I hit my API limit, or you can't spell.";
 				$("#insult").text("");
@@ -94,13 +90,11 @@
         				$("#resetButton").removeClass("hidden");
         			}
       	});
-        //play("http://tts-api.com/tts.mp3?q=ERROR!%20%20Something%20went%20wrong.%20%20Either%20I%20hit%20my%20API%20limit%2C%20or%20you%20can't%20spell.")
-        snd = mespeak.play(insult);
+        play("http://tts-api.com/tts.mp3?q=ERROR!%20%20Something%20went%20wrong.%20%20Either%20I%20hit%20my%20API%20limit%2C%20or%20you%20can't%20spell.")
 			}
 			
 			function resetScreen() {
-        //snd.pause();
-        meSpeak.stop(snd);
+        snd.pause();
 				var old = $('#insult');
 				var parent = old.parent();
 				parent.prepend($('<a>').attr('id', 'insult'));
@@ -127,8 +121,7 @@
 					getInsult(summonerName, summonerRegion);
 				});
 				$('#againButton').unbind("click").click( function(evt) {
-          //snd.pause();
-          meSpeak.stop(snd);
+          snd.pause();
 					var old = $('#insult');
 					var parent = old.parent();
 					parent.prepend($('<a>').attr('id', 'insult'));
