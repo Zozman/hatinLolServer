@@ -10,6 +10,9 @@ router.get('/', function(req, res) {
   // Get region and character name
   var region = req.query.region;
   var charName = req.query.charName;
+  console.log("Good Cache: " + myCache.get(charName.toLowerCase()+"|"+region));
+  console.log("-----------------");
+  console.log("Bad Cache: " + myCache.get("BLARG"));
   // Make request to turn charName into charID
   request(makeIDURL(charName, region), function (error, response, body) {
     // If a good response was returned
