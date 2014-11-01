@@ -7,6 +7,7 @@ External Node Modules
 This application uses the following Node modules (dependencies handles by NPM):
 - [Express](http://expressjs.com/ "Express")
 - [Request](https://github.com/mikeal/request "Request")
+- [node-cache](https://github.com/ptarjan/node-cache "node-cache")
 
 External CSS and JavaScript
 ---------------------------
@@ -23,7 +24,7 @@ Installation
 
 Data
 ----
-The application uses data from the [Riot Games API](https://developer.riotgames.com/ "Riot Games API").  This application takes the current stats of a Summoner for the current season, both Ranked and Player matches and combines them.
+The application uses data from the [Riot Games API](https://developer.riotgames.com/ "Riot Games API").  This application takes the current stats of a Summoner for the current season, both Ranked and Player matches and combines them.  Once data on a Summoner is collected, it is cached for an hour to lower API requests and speed up response time.
 
 Insults
 -------
