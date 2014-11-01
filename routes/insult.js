@@ -61,7 +61,7 @@ router.get('/', function(req, res) {
               });
               // Generate the insult
               var combinedData = combineStatsArray(aggArray);
-              var finalResult = findInsult(combined, charName);
+              var finalResult = findInsult(combinedData, charName);
               myCache.set(charName.toLowerCase()+"|"+region, finalResult);
               // Return insult
               res.json({ result: finalResult, summoner:charName});
@@ -69,7 +69,7 @@ router.get('/', function(req, res) {
             } else {
               // Generate the insult
               var combinedData2 = combineStatsArray(aggArray);
-              var finalResult2 = findInsult(combined, charName);
+              var finalResult2 = findInsult(combinedData2, charName);
               myCache.set(charName.toLowerCase()+"|"+region, finalResult);
               // Return the insult
               res.json({ result: finalResult2, summoner:charName});
