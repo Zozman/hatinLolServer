@@ -10,90 +10,95 @@ router.get('/', function(req, res) {
   // Get region and character name
   var region = req.query.region;
   var charName = req.query.charName;
-  var cachKey = charName.toLowerCase()+"|"+region;
-  var cacheData = myCache.get(cachKey);
+  // Get key for cache
+  var cacheKey = charName.toLowerCase()+"|"+region;
+  // Attempt to find a cached version of the data
+  var cacheData = myCache.get(cacheKey);
+  // If there is no cached data, get fresh data
   if (isEmptyObject(cacheData)) {
-    console.log("Data came back undefined");
-  } else {
-    console.log("Data came back OK and we got " + cacheData[cachKey].wins + " wins!");
-  }
-  // Make request to turn charName into charID
-  request(makeIDURL(charName, region), function (error, response, body) {
-    // If a good response was returned
-    if (!error && response.statusCode == 200) {
-      // Parse the returned JSON
-      var jsonObj = JSON.parse(body);
-      // Get the charID
-      var charID = String(jsonObj[charName.toLowerCase()].id);
-      // Make request to get summoner's public game stats
-      request(makeSummaryURL(charID, region), function (error2, response2, body2) {
-        // If good value was returned
-        if (!error2 && response2.statusCode == 200) {
-          // Create array to hold AggregatedStats objects
-          var aggArray = [];
-          // Parse the returned JSON and for each playerStatSummary
-          JSON.parse(body2).playerStatSummaries.forEach(function(item, index) {
-            // Initialize wins and losses
-            var wins = 0;
-            var losses = 0;
-            // Get wins if any are returned
-            if (item.hasOwnProperty('wins')) {
-              wins = item.wins;
-            }
-            // Get losses if any are returned
-            if (item.hasOwnProperty('losses')) {
-              losses = item.losses;
-            }
-            // Take JSON and wins and losses and create new AggregatedStats object
-            // Then add it to the array
-            aggArray.push(new AggregatedStats().fromJson(item.aggregatedStats, wins, losses));
-          });
-          // Make a request for all ranked games stats
-          request(makeRankedURL(charID, region), function (error3, response3, body3) {
-            // If a good result was returned
-            if (!error3 && response3.statusCode == 200) {
-              // Parse all the champions data
-              JSON.parse(body3).champions.forEach(function(item, index) {
-                // If item 0 is found (item 0 is data for all Champions)
-                if (item.id === 0) {
-                  // Add it to the array
-                  aggArray.push(new AggregatedStats().fromJson(item.stats, 0, 0));
-                }
-              });
-              // Generate the insult
-              var combinedData = combineStatsArray(aggArray);
-              var finalResult = findInsult(combinedData, charName);
-              myCache.set(charName.toLowerCase()+"|"+region, combinedData);
-              // Return insult
-              res.json({ result: finalResult, summoner:charName});
-            // Else if no ranked data is returned
-            } else {
-              // Generate the insult
-              var combinedData2 = combineStatsArray(aggArray);
-              var finalResult2 = findInsult(combinedData2, charName);
-              myCache.set(charName.toLowerCase()+"|"+region, combinedData2);
-              // Return the insult
-              res.json({ result: finalResult2, summoner:charName});
-            }
-          })
-        // Else if a 503 is returned for the player game stats
-        } else if (response.statusCode == 503) {
-          // Return 503 error
-          res.json({ result: Error503() });
+    // Make request to turn charName into charID
+    request(makeIDURL(charName, region), function (error, response, body) {
+      // If a good response was returned
+      if (!error && response.statusCode == 200) {
+        // Parse the returned JSON
+        var jsonObj = JSON.parse(body);
+        // Get the charID
+        var charID = String(jsonObj[charName.toLowerCase()].id);
+        // Make request to get summoner's public game stats
+        request(makeSummaryURL(charID, region), function (error2, response2, body2) {
+          // If good value was returned
+          if (!error2 && response2.statusCode == 200) {
+            // Create array to hold AggregatedStats objects
+            var aggArray = [];
+            // Parse the returned JSON and for each playerStatSummary
+            JSON.parse(body2).playerStatSummaries.forEach(function(item, index) {
+              // Initialize wins and losses
+              var wins = 0;
+              var losses = 0;
+              // Get wins if any are returned
+              if (item.hasOwnProperty('wins')) {
+                wins = item.wins;
+              }
+              // Get losses if any are returned
+              if (item.hasOwnProperty('losses')) {
+                losses = item.losses;
+              }
+              // Take JSON and wins and losses and create new AggregatedStats object
+              // Then add it to the array
+              aggArray.push(new AggregatedStats().fromJson(item.aggregatedStats, wins, losses));
+            });
+            // Make a request for all ranked games stats
+            request(makeRankedURL(charID, region), function (error3, response3, body3) {
+              // If a good result was returned
+              if (!error3 && response3.statusCode == 200) {
+                // Parse all the champions data
+                JSON.parse(body3).champions.forEach(function(item, index) {
+                  // If item 0 is found (item 0 is data for all Champions)
+                  if (item.id === 0) {
+                    // Add it to the array
+                    aggArray.push(new AggregatedStats().fromJson(item.stats, 0, 0));
+                  }
+                });
+                // Generate the insult
+                var combinedData = combineStatsArray(aggArray);
+                var finalResult = findInsult(combinedData, charName);
+                // Cache data for an hour
+                myCache.set(cacheKey, combinedData);
+                // Return insult
+                res.json({ result: finalResult, summoner:charName});
+              // Else if no ranked data is returned
+              } else {
+                // Generate the insult
+                var combinedData2 = combineStatsArray(aggArray);
+                var finalResult2 = findInsult(combinedData2, charName);
+                // Cache data for an hour
+                myCache.set(cacheKey, combinedData2);
+                // Return the insult
+                res.json({ result: finalResult2, summoner:charName});
+              }
+            })
+          // Else if a 503 is returned for the player game stats
+          } else if (response.statusCode == 503) {
+            // Return 503 error
+            res.json({ result: Error503() });
+          // Else any other error return generic error code
+          }else {
+            res.json({ result: makeGenericError() });
+          }
+        })
+      // Else if a 503 is returned for the player id lookup
+      } else if (response.statusCode == 503) {
+        // Return 503 error
+        res.json({ result: Error503() });
+      } else {
         // Else any other error return generic error code
-        }else {
-          res.json({ result: makeGenericError() });
-        }
-      })
-    // Else if a 503 is returned for the player id lookup
-    } else if (response.statusCode == 503) {
-      // Return 503 error
-      res.json({ result: Error503() });
-    } else {
-      // Else any other error return generic error code
-      res.json({ result: makeGenericError() });
-    }
-  })
+        res.json({ result: makeGenericError() });
+      }
+    })
+  // Else return an insult using cached data
+  } else {
+    res.json({ result: findInsult(cacheData[cacheKey], charName), summoner:charName});
+  }
 });
 
 // Function compiles and returns the url to make a call to the Riot API to get the summoner's id
