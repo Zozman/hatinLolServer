@@ -10,9 +10,12 @@ router.get('/', function(req, res) {
   // Get region and character name
   var region = req.query.region;
   var charName = req.query.charName;
-  console.log("Good Cache: " + myCache.get(charName.toLowerCase()+"|"+region)[0].wins);
-  console.log("-----------------");
-  console.log("Bad Cache: " + myCache.get("BLARG")[0].wins);
+  /*var cacheData = myCache.get(charName.toLowerCase()+"|"+region);
+  if (cacheData === undefined) {
+    console.log("Data came back undefined");
+  } else {
+    console.log("Data came back OK and we got " + cacheData.wins);
+  }*/
   // Make request to turn charName into charID
   request(makeIDURL(charName, region), function (error, response, body) {
     // If a good response was returned
@@ -56,16 +59,18 @@ router.get('/', function(req, res) {
                   aggArray.push(new AggregatedStats().fromJson(item.stats, 0, 0));
                 }
               });
-              myCache.set(charName.toLowerCase()+"|"+region, aggArray);
               // Generate the insult
-              var finalResult = generateInsult(aggArray, charName);
+              var combinedData = combineStatsArray(aggArray);
+              var finalResult = findInsult(combined, charName);
+              myCache.set(charName.toLowerCase()+"|"+region, finalResult);
               // Return insult
               res.json({ result: finalResult, summoner:charName});
             // Else if no ranked data is returned
             } else {
-              myCache.set(charName.toLowerCase()+"|"+region, aggArray);
               // Generate the insult
-              var finalResult2 = generateInsult(aggArray, charName);
+              var combinedData2 = combineStatsArray(aggArray);
+              var finalResult2 = findInsult(combined, charName);
+              myCache.set(charName.toLowerCase()+"|"+region, finalResult);
               // Return the insult
               res.json({ result: finalResult2, summoner:charName});
             }
