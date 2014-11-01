@@ -10,12 +10,12 @@ router.get('/', function(req, res) {
   // Get region and character name
   var region = req.query.region;
   var charName = req.query.charName;
-  /*var cacheData = myCache.get(charName.toLowerCase()+"|"+region);
+  var cacheData = myCache.get(charName.toLowerCase()+"|"+region);
   if (cacheData === undefined) {
     console.log("Data came back undefined");
   } else {
-    console.log("Data came back OK and we got " + cacheData.wins);
-  }*/
+    console.log("Data came back OK and we got " + cacheData.wins + " wins!");
+  }
   // Make request to turn charName into charID
   request(makeIDURL(charName, region), function (error, response, body) {
     // If a good response was returned
