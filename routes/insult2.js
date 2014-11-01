@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var fs = require('fs');
-var NodeCache = require( "node-cache" );
-var myCache = new NodeCache( { stdTTL: 3600, checkperiod: 120 } );
 
 /* GET Insult API call */
 router.get('/', function(req, res) {
@@ -53,14 +51,12 @@ router.get('/', function(req, res) {
                   aggArray.push(new AggregatedStats().fromJson(item.stats, 0, 0));
                 }
               });
-              myCache.set(charName.toLowerCase()+"|"+region, aggArray);
               // Generate the insult
               var finalResult = generateInsult(aggArray, charName);
               // Return insult
               res.json({ result: finalResult, summoner:charName});
             // Else if no ranked data is returned
             } else {
-              myCache.set(charName.toLowerCase()+"|"+region, aggArray);
               // Generate the insult
               var finalResult2 = generateInsult(aggArray, charName);
               // Return the insult
