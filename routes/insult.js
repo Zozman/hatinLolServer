@@ -62,7 +62,7 @@ router.get('/', function(req, res) {
               // Generate the insult
               var combinedData = combineStatsArray(aggArray);
               var finalResult = findInsult(combinedData, charName);
-              myCache.set(charName.toLowerCase()+"|"+region, finalResult);
+              myCache.set(charName.toLowerCase()+"|"+region, combinedData);
               // Return insult
               res.json({ result: finalResult, summoner:charName});
             // Else if no ranked data is returned
@@ -70,7 +70,7 @@ router.get('/', function(req, res) {
               // Generate the insult
               var combinedData2 = combineStatsArray(aggArray);
               var finalResult2 = findInsult(combinedData2, charName);
-              myCache.set(charName.toLowerCase()+"|"+region, finalResult2);
+              myCache.set(charName.toLowerCase()+"|"+region, combinedData2);
               // Return the insult
               res.json({ result: finalResult2, summoner:charName});
             }
