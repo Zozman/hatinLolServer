@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
   var region = req.query.region;
   var charName = req.query.charName;
   var cacheData = myCache.get(charName.toLowerCase()+"|"+region);
-  if (cacheData === undefined) {
+  if (isEmptyObject(cacheData)) {
     console.log("Data came back undefined");
   } else {
     console.log("Data came back OK and we got " + cacheData.wins + " wins!");
@@ -252,6 +252,17 @@ RegExp.escape = function(text) {
 String.prototype.replaceAll = function(search, replace) {
     return this.replace(new RegExp(RegExp.escape(search),'g'), replace);
 };
+
+// Function to tell if we have an empty object (used with cache)
+// From http://stackoverflow.com/questions/11480769/how-can-i-check-if-a-json-is-empty-in-nodejs
+function isEmptyObject(obj) {
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      return false;
+    }
+  }
+  return true;
+}
 
 // Function to return a basic 503 error message
 function Error503() {
