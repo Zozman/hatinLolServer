@@ -1,3 +1,12 @@
+a {
+  color: #FFFFFF;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+a:hover {
+  color: #FFFFFF;
+}
+
 .hidden {
 	visibility: hidden
 }
@@ -7,7 +16,6 @@
 	width:50%;
 }
 .console {
-  font-family:Courier;
   color: #CCCCCC;
   background: #000000;
   padding: 10px;
@@ -16,7 +24,7 @@
 	bottom:0;
     position:fixed;
     z-index:150;
-    _position:absolute;
+    position:absolute;
     height:70px;
     width:95%;
     text-align:center;
