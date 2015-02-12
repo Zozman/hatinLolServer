@@ -31,15 +31,11 @@ router.get('/', function(req, res) {
             // Create array to hold AggregatedStats objects
             var aggArray = [];
             // Parse the returned JSON and for each playerStatSummary
-            if (typeof(JSON.parse(body2).playerStatSummaries) === undefined ) {
-              // Initialize wins and losses
-              var wins = 0;
-              var losses = 0;
-            } else {
-              JSON.parse(body2).playerStatSummaries.forEach(function(item, index) {
-                // Initialize wins and losses
+            // Initialize wins and losses
                 var wins = 0;
                 var losses = 0;
+            try {
+              JSON.parse(body2).playerStatSummaries.forEach(function(item, index) {
                 // Get wins if any are returned
                 if (item.hasOwnProperty('wins')) {
                   wins = item.wins;
@@ -52,6 +48,8 @@ router.get('/', function(req, res) {
                 // Then add it to the array
                 aggArray.push(new AggregatedStats().fromJson(item.aggregatedStats, wins, losses));
               });
+            } catch (Exception) {
+              
             }
             // Make a request for all ranked games stats
             request(makeRankedURL(charID, region), function (error3, response3, body3) {
