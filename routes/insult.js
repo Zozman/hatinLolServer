@@ -49,7 +49,7 @@ router.get('/', function(req, res) {
                 aggArray.push(new AggregatedStats().fromJson(item.aggregatedStats, wins, losses));
               });
             } catch (Exception) {
-              
+              aggArray.push(new AggregatedStats());
             }
             // Make a request for all ranked games stats
             request(makeRankedURL(charID, region), function (error3, response3, body3) {
