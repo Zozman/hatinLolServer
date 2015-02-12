@@ -24,6 +24,7 @@ router.get('/', function(req, res) {
         var jsonObj = JSON.parse(body);
         var searchNameForArray = charName.replaceAll(" ","").toLowerCase();
         var charID = String(jsonObj[searchNameForArray].id);
+        console.log("ID: " + charID);
         // Make request to get summoner's public game stats
         request(makeSummaryURL(charID, region), function (error2, response2, body2) {
           console.log(body2);
