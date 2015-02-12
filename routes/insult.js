@@ -10,6 +10,7 @@ router.get('/', function(req, res) {
   // Get region and character name
   var region = req.query.region;
   var charName = req.query.charName;
+  charName = charName.replaceAll('%20', '');
   // Get key for cache
   var cacheKey = charName.toLowerCase()+"|"+region;
   // Attempt to find a cached version of the data
