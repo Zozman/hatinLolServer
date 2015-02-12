@@ -10,6 +10,8 @@ router.get('/', function(req, res) {
   // Get region and character name
   var region = req.query.region;
   var charName = req.query.charName;
+  charName = decodeURI(charName);
+  charName = charName.replaceAll(" ","");
   // Get key for cache
   var cacheKey = charName.toLowerCase()+"|"+region;
   // Attempt to find a cached version of the data
@@ -23,7 +25,7 @@ router.get('/', function(req, res) {
         // Parse the returned JSON
         var jsonObj = JSON.parse(body);
         // Get the charID
-        var charID = String(jsonObj[decodeURI(charName.toLowerCase())].id);
+        var charID = String(jsonObj[charName.toLowerCase()].id);
         // Make request to get summoner's public game stats
         request(makeSummaryURL(charID, region), function (error2, response2, body2) {
           // If good value was returned
