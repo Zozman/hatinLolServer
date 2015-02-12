@@ -24,31 +24,35 @@ router.get('/', function(req, res) {
         var jsonObj = JSON.parse(body);
         var searchNameForArray = charName.replaceAll(" ","").toLowerCase();
         var charID = String(jsonObj[searchNameForArray].id);
-        console.log("ID: " + charID);
         // Make request to get summoner's public game stats
         request(makeSummaryURL(charID, region), function (error2, response2, body2) {
-          console.log(body2);
           // If good value was returned
           if (!error2 && response2.statusCode == 200) {
             // Create array to hold AggregatedStats objects
             var aggArray = [];
             // Parse the returned JSON and for each playerStatSummary
-            JSON.parse(body2).playerStatSummaries.forEach(function(item, index) {
+            if (typeof(JSON.parse(body2).playerStatSummaries) === undefined ) {
               // Initialize wins and losses
               var wins = 0;
               var losses = 0;
-              // Get wins if any are returned
-              if (item.hasOwnProperty('wins')) {
-                wins = item.wins;
-              }
-              // Get losses if any are returned
-              if (item.hasOwnProperty('losses')) {
-                losses = item.losses;
-              }
-              // Take JSON and wins and losses and create new AggregatedStats object
-              // Then add it to the array
-              aggArray.push(new AggregatedStats().fromJson(item.aggregatedStats, wins, losses));
-            });
+            } else {
+              JSON.parse(body2).playerStatSummaries.forEach(function(item, index) {
+                // Initialize wins and losses
+                var wins = 0;
+                var losses = 0;
+                // Get wins if any are returned
+                if (item.hasOwnProperty('wins')) {
+                  wins = item.wins;
+                }
+                // Get losses if any are returned
+                if (item.hasOwnProperty('losses')) {
+                  losses = item.losses;
+                }
+                // Take JSON and wins and losses and create new AggregatedStats object
+                // Then add it to the array
+                aggArray.push(new AggregatedStats().fromJson(item.aggregatedStats, wins, losses));
+              });
+            }
             // Make a request for all ranked games stats
             request(makeRankedURL(charID, region), function (error3, response3, body3) {
               // If a good result was returned
